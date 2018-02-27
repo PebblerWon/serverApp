@@ -1,11 +1,7 @@
-var express = require('express')
-var app = express()
-app.get('/',function(req,res){
-	res.send('Hello World')
-})
-
-var server = app.listen(80,function(){
-	var host = server.address().address
-	var port = server.address().port
-	console.log('Example app listening at htth://%s:%s',host,port)
-})
+module.exports = app=>{
+	app.beforeStart(async()=>{
+		console.log("我要启动了！")
+		const ctx = app.createAnonymousContext()
+		console.log(ctx.request)
+	})
+}
