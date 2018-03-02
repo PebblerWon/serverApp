@@ -21,6 +21,8 @@ module.exports = appInfo => {
 	  q:'',
 	  serverUrl:'https://github.com/search'
   }
-
+  config.gitapi={
+    serverUrl:'https://developer.github.com/v3/'
+  }
   return config;
 };

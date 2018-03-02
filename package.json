@@ -4,8 +4,10 @@
   "description": "created by egg",
   "private": true,
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "egg": "^2.2.1",
-    "egg-scripts": "^2.5.0"
+    "egg-scripts": "^2.5.0",
+    "request": "^2.83.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
