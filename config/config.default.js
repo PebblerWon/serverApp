@@ -8,7 +8,7 @@ const myConfig = {
   },
   gitapi:{
     serverUrl:'https://api.github.com',
-    gitToken:'a15f28021738aac8c7f839aa985e5fd84a46e9a5'
+    gitToken:'0daa963212c896ef31f2abc2a05074fef38601ca'
   }
 }
 
@@ -35,8 +35,9 @@ module.exports = appInfo => {
 	  serverUrl:'https://github.com/search'
   }
   config.gitapi={
-    serverUrl:'https://github.com/search',
-    serverUrl2:'https://developer.github.com/v3/'
+    serverUrl:'https://api.github.com',
+    serverUrl2:'https://developer.github.com/v3/',
+    gitToken:'0daa963212c896ef31f2abc2a05074fef38601ca'
   }
   return config;
 };

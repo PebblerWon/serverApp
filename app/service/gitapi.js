@@ -21,10 +21,8 @@ class GitapiService extends Service{
 			},
 			dataType:'json'
 		});
-		const $ = cheerio.load(result.data)
-		let a = $('ul.repo-list>div.repo-list-item>div>h3>a')['0']
-		console.log(a)
-    	return a;
+		console.log(result)
+    	return result;
 	}
 }
 
