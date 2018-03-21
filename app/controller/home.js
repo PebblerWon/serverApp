@@ -6,7 +6,7 @@ class HomeController extends Controller {
   async index() {
 
     //this.ctx.body = this.app.config
-    this.ctx.body = "hello world"
+    this.ctx.body = "i love you ^_^"
 
     console.log(this.ctx.body.length)
   }

@@ -1,3 +1,4 @@
+
 module.exports = app=>{
 	app.beforeStart(async()=>{
 		console.log("我要启动了！")
