@@ -1,5 +1,17 @@
 'use strict';
 
+const myConfig = {
+  news:{
+    type:'',
+    q:'',
+    serverUrl:'https://github.com/search'
+  },
+  gitapi:{
+    serverUrl:'https://api.github.com',
+    gitToken:'a15f28021738aac8c7f839aa985e5fd84a46e9a5'
+  }
+}
+
 module.exports = appInfo => {
   const config = exports = {};
 
@@ -10,6 +22,7 @@ module.exports = appInfo => {
   //中间件好像只在respnse的时候调用
   config.middleware = ['gzip'];
   config.gzip={
+    match:'/static',
   	threshold:1024
   }
 
@@ -22,7 +35,10 @@ module.exports = appInfo => {
 	  serverUrl:'https://github.com/search'
   }
   config.gitapi={
-    serverUrl:'https://developer.github.com/v3/'
+    serverUrl:'https://api.github.com',
+    gitToken:'a15f28021738aac8c7f839aa985e5fd84a46e9a5'
   }
   return config;
 };
+
+module.exports.config = 
