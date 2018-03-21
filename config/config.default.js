@@ -5,7 +5,7 @@ module.exports = appInfo => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1519695847549_3649';
-
+  config.cluster={listen:{port:80}}
   // add your config here
   //中间件好像只在respnse的时候调用
   config.middleware = ['gzip'];
