@@ -8,7 +8,7 @@ const myConfig = {
   },
   gitapi:{
     serverUrl:'https://api.github.com',
-    gitToken:'0daa963212c896ef31f//2abc2a05074fef38601ca'
+    gitToken:'e11589e16b6a884080//aea327276337f4390612c6'
   }
 }
 
