@@ -1,17 +1,5 @@
 'use strict';
-
-const myConfig = {
-  news:{
-    type:'',
-    q:'',
-    serverUrl:'https://github.com/search'
-  },
-  gitapi:{
-    serverUrl:'https://api.github.com',
-    gitToken:'e11589e16b6a884080//aea327276337f4390612c6'
-  }
-}
-
+const path = require('path')
 module.exports = appInfo => {
   const config = exports = {};
 
@@ -20,15 +8,19 @@ module.exports = appInfo => {
   config.cluster={listen:{port:80}}
   // add your config here
   //中间件好像只在respnse的时候调用
-  config.middleware = ['gzip'];
+  config.middleware = ['gzip','saveSession'];
   config.gzip={
     match:'/static',
   	threshold:1024
   }
 
+  config.static={
+    prefix:'/public',
+    dir:path.join(appInfo.baseDir,'app/public/dist')
+  }
 
   //my config
-  config.appInfo = appInfo
+  //config.appInfo = appInfo
   config.news = {
 	  type:'',
 	  q:'',
@@ -37,7 +29,7 @@ module.exports = appInfo => {
   config.gitapi={
     serverUrl:'https://api.github.com',
     serverUrl2:'https://developer.github.com/v3/',
-    gitToken:'0daa963212c896ef31f2abc2a05074fef38601ca'
+    gitToken:'e11589e16b6a884___080aea327276337f4390612c6'
   }
   return config;
 };

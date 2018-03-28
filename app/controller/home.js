@@ -4,11 +4,8 @@ const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index() {
-
     //this.ctx.body = this.app.config
-    this.ctx.body = "i love you ^_^"
-
-    console.log(this.ctx.body.length)
+    this.ctx.body = "<h1>i love you ^_^</h1>"
   }
 }
 

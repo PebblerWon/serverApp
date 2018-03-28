@@ -2,26 +2,33 @@ const Service = require('egg').Service
 const Config = require('../../config/config.default.js')
 
 class GitapiService extends Service{
-	async test(){
-		const {serverUrl,gitToken} = this.config.gitapi
-		const result = await this.ctx.curl(`${serverUrl}/search/users?q=tom+repos:>42+followers:>1000`,{
+	async query(){
+		const {ctx,config} = this
+		const {serverUrl,gitToken} = config.gitapi
+		const result = await ctx.curl(`${serverUrl}/search/repositories`,{
 			headers:{
 				Authorization: `token ${gitToken}`
 			},
-			dataType:'json'
+			dataType:'json',
+			data:{
+				q:'stars:>1000'
+			}
 		});
+
     	return result.data;
 	}
 
 	async me(){
-		const {serverUrl,gitToken} = this.config.gitapi
-		const result = await this.ctx.curl(`${serverUrl}/user`,{
+		const {ctx,config} = this
+		const {serverUrl,gitToken} = config.gitapi
+		const result = await ctx.curl(`${serverUrl}/user`,{
 			headers:{
 				Authorization: `token ${gitToken}`
 			},
 			dataType:'json'
 		});
-		console.log(result)
+		//console.log(result)
+		result.data['whn'] = ctx
     	return result;
 	}
 }

@@ -2,13 +2,26 @@ const Controller = require('egg').Controller
 
 class GitapiController extends Controller{
 	async test(){
-		const data = await this.ctx.service.gitapi.test()
-		this.ctx.body = data
+		const {ctx,app,config,service,logger} = this
+		let user = ctx.cookies.get('user')
+		
+		if(!user)
+			ctx.cookies.set('user','whn',{
+				encrypt:true,
+			})
+		ctx.body = user
 	}
+	async query(){
+		const {ctx,app,config,service,logger} = this
 
+		const data = await service.gitapi.query()
+		ctx.response.body = data
+	}
 	async me(){
-		const data = await this.ctx.service.gitapi.me()
-		this.ctx.body = data
+		const {ctx,app,config,service,logger} = this
+
+		const data = await service.gitapi.me()
+		ctx.body = data
 	}
 }
 
