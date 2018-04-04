@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\node_modules",
+    "\\node_modules\\.bin",
+    "\\node_modules\\common-bin\\lib",
+    "\\node_modules\\egg-bin",
+    "\\node_modules\\egg-bin\\bin",
+    "\\node_modules\\egg-scripts\\bin",
+    "\\node_modules\\egg-scripts\\lib",
+    "\\node_modules\\egg-scripts\\lib\\cmd"
+  ],
+  "SelectedNode": "\\node_modules\\egg-bin\\index.js",
+  "PreviewInSolutionExplorer": false
+}

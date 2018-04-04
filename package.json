@@ -24,9 +24,9 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-serverApp",
+    "start": "egg-scripts start --daemon --port=443 --title=egg-server-serverApp --https.key=./chain/private.key --https.cert=./chain/full_chain.pem",
     "stop": "egg-scripts stop --title=egg-server-serverApp",
-    "dev": "egg-bin dev --https --key=./chain/private.key --cert=./chain/full_chain.pem",
+    "dev": "egg-bin dev --port=443 --https.key=./chain/private.key --https.cert=./chain/full_chain.pem",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
