@@ -8,9 +8,12 @@
             "type": "node",
             "request": "launch",
             "name": "启动程序",
-            "program": "${workspaceFolder}/node_modules/egg-bin/bin/egg-bin.js",
+            "program": "${workspaceFolder}/node_modules/egg-scripts/bin/egg-scripts.js",
             "args": [
-                "dev"
+                "start",
+                "--daemon",
+                "--port=80",
+                "--title=egg-server-serverApp "
             ]
         }
     ]

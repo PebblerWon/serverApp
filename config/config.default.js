@@ -5,12 +5,6 @@ module.exports = appInfo => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1519695847549_3649';
-  config.cluster={
-    listen:{
-      port:80,
-      hostname:'localhost'
-    }
-  }
   // add your config here
   //中间件好像只在respnse的时候调用
   config.middleware = ['gzip','saveSession'];
@@ -34,7 +28,7 @@ module.exports = appInfo => {
   config.gitapi={
     serverUrl:'https://api.github.com',
     serverUrl2:'https://developer.github.com/v3/',
-    gitToken:'e11589e16b6a884___080aea327276337f4390612c6'
+    gitToken:'e11589e16b6a884080aea327276337f4390612c6'
   }
   return config;
 };
