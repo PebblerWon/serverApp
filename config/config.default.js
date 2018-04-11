@@ -28,7 +28,7 @@ module.exports = appInfo => {
   config.gitapi={
     serverUrl:'https://api.github.com',
     serverUrl2:'https://developer.github.com/v3/',
-    gitToken:'dfac227af526e8___666a438ac7982a3c8b7938cf53'
+    gitToken:'dfac227af526e8666a438ac7982a3c8b7938cf53'
   }
   return config;
 };

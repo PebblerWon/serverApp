@@ -17,6 +17,9 @@ class GitapiController extends Controller{
 		const data = await service.gitapi.query()
 		ctx.response.body = data
 	}
+	async advancedQuery(){
+		ctx.response.body = "advancedQuery"
+	}
 	async me(){
 		const {ctx,app,config,service,logger} = this
 

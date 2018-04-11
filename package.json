@@ -6,6 +6,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "egg": "^2.2.1",
+    "egg-mongoose": "^2.2.0",
     "egg-scripts": "^2.5.0",
     "egg-view-nunjucks": "^2.1.6",
     "request": "^2.83.0"
@@ -24,10 +25,10 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "httpsStart":"egg-scripts start --daemon --port=443 --title=egg-server-serverApp --https.key=./chain/private.key --https.cert=./chain/full_chain.pem",
+    "httpsStart": "egg-scripts start --daemon --port=443 --title=egg-server-serverApp --https.key=./chain/private.key --https.cert=./chain/full_chain.pem",
     "start": "egg-scripts start --daemon --port=80 --title=egg-server-serverApp ",
     "stop": "egg-scripts stop --title=egg-server-serverApp",
-    "httpsDev":"egg-bin dev --port=443 --https.key=./chain/private.key --https.cert=./chain/full_chain.pem",
+    "httpsDev": "egg-bin dev --port=443 --https.key=./chain/private.key --https.cert=./chain/full_chain.pem",
     "dev": "egg-bin dev --port=80",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",

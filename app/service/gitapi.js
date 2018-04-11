@@ -5,13 +5,16 @@ class GitapiService extends Service{
 	async query(){
 		const {ctx,config} = this
 		const {serverUrl,gitToken} = config.gitapi
+		const language = ctx.params.language
 		const result = await ctx.curl(`${serverUrl}/search/repositories`,{
 			headers:{
 				Authorization: `token ${gitToken}`
 			},
 			dataType:'json',
 			data:{
-				q:'stars:>1000'
+				//q:`language:${language} stars:>1000`,
+				q:`language:${language}`,
+				sort:'stars'
 			}
 		});
 
