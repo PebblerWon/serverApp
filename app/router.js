@@ -6,7 +6,7 @@
 module.exports = app => {
   const { router, controller } = app
   router.get('/', controller.home.index)
-  router.get('/test',controller.gitapi.test)
+  router.get('/api/test',controller.gitapi.test)
   router.get('/api/me',controller.gitapi.me)
   router.get('/api/query/:language',controller.gitapi.query)
   router.get('/api/query',controller.gitapi.query)

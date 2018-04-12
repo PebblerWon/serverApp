@@ -2,14 +2,19 @@ const Controller = require('egg').Controller
 
 class GitapiController extends Controller{
 	async test(){
-		const {ctx,app,config,service,logger} = this
-		let user = ctx.cookies.get('user')
-		
-		if(!user)
-			ctx.cookies.set('user','whn',{
-				encrypt:true,
-			})
-		ctx.body = user
+		const {ctx,config} = this
+		const {serverUrl,gitToken} = config.gitapi
+		const Repo = ctx.model.Repo
+		const result = await ctx.curl(`${serverUrl}/search/repositories`,{
+			headers:{
+				Authorization: `token ${gitToken}`
+			},
+			dataType:'json',
+			data:{
+				q:`stars:>1000`,
+			}
+		});
+		ctx.response.body = result
 	}
 	async query(){
 		const {ctx,app,config,service,logger} = this
