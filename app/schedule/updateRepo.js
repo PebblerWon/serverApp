@@ -17,7 +17,21 @@ class UpdateRepo extends Subscription{
 			const {ctx,config} = this
 			const {serverUrl,gitToken} = config.gitapi
 			const Repo = ctx.model.Repo
-			const result = await ctx.curl(`${serverUrl}/search/repositories`,{
+			Repo.find({id:item.id},(err,docs)=>{
+				if(docs.length=0){
+					let newItem = new Repo({
+						id:Math.floor(Math.random()*100).toString(),
+						name:'test',
+						full_name:'test',
+						html_url:'String',
+						description:'String',
+						language:'String',
+						stargazers_count:Math.floor(Math.random()*100),
+					})
+					newItem.save()
+				}
+			})
+			/*const result = await ctx.curl(`${serverUrl}/search/repositories`,{
 				headers:{
 					Authorization: `token ${gitToken}`
 				},
@@ -38,7 +52,7 @@ class UpdateRepo extends Subscription{
 						}
 					})
 				}
-			}
+			}*/
 		}catch(err){
 			this.logger.error(err)
 			return
