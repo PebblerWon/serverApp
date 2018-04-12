@@ -18,22 +18,8 @@ class UpdateRepo extends Subscription{
 			const {ctx,config} = this
 			const {serverUrl,gitToken} = config.gitapi
 			const Repo = ctx.model.Repo
-			const item = {
-						id:Math.floor(Math.random()*10000).toString(),
-						name:'test',
-						full_name:'test',
-						html_url:'String',
-						description:'String',
-						language:'String',
-						stargazers_count:Math.floor(Math.random()*10000),
-					}
-			Repo.find({id:item.id},(err,docs)=>{
-				if(docs.length==0){
-					let newItem = new Repo(item)
-					newItem.save()
-				}
-			})
-			/*const result = await ctx.curl(`${serverUrl}/search/repositories`,{
+			
+			const result = await ctx.curl(`${serverUrl}/search/repositories`,{
 				headers:{
 					Authorization: `token ${gitToken}`
 				},
@@ -42,19 +28,18 @@ class UpdateRepo extends Subscription{
 					q:`stars:>1000`,
 				}
 			});
-
 			if(result.status==200&&result.data){
-				for(let item in result.data.items){
+				for(let item of result.data.items){
 					Repo.find({id:item.id},(err,docs)=>{
-						if(docs.length=0){
-							let newItem = new Repo({
-								item
+						if(docs.length==0){
+							let newItem = new Repo(item)
+							newItem.save((a,b,c)=>{
+								ctx.logger.info("err: "+a)
 							})
-							newItem.save()
 						}
 					})
 				}
-			}*/
+			}
 		}catch(err){
 			this.logger.error(err)
 			return
