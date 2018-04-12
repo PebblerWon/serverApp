@@ -3,22 +3,18 @@ const Config = require('../../config/config.default.js')
 
 class GitapiService extends Service{
 	async query(){
-		const {ctx,config} = this
-		const {serverUrl,gitToken} = config.gitapi
-		const language = ctx.params.language
-		const result = await ctx.curl(`${serverUrl}/search/repositories`,{
-			headers:{
-				Authorization: `token ${gitToken}`
-			},
-			dataType:'json',
-			data:{
-				//q:`language:${language} stars:>1000`,
-				q:`language:${language}`,
-				sort:'stars'
-			}
-		});
-
-    	return result.data;
+		try{
+			const {ctx,config} = this
+			const {serverUrl,gitToken} = config.gitapi
+			const Repo = ctx.model.Repo
+			let result = await Repo.find()
+			console.log(result)
+	    	return result;
+		}catch(err){
+			this.logger.error(err)
+			return {}
+		}
+		
 	}
 
 	async me(){

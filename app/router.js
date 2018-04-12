@@ -9,6 +9,7 @@ module.exports = app => {
   router.get('/test',controller.gitapi.test)
   router.get('/api/me',controller.gitapi.me)
   router.get('/api/query/:language',controller.gitapi.query)
+  router.get('/api/query',controller.gitapi.query)
   router.post('/api/advancedQuery',controller.gitapi.advancedQuery)
   /*
   * server redirect
