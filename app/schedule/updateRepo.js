@@ -13,21 +13,23 @@ class UpdateRepo extends Subscription{
 	}
 
 	async subscribe(){
+		console.log('subscribe')
 		try{
 			const {ctx,config} = this
 			const {serverUrl,gitToken} = config.gitapi
 			const Repo = ctx.model.Repo
-			Repo.find({id:item.id},(err,docs)=>{
-				if(docs.length=0){
-					let newItem = new Repo({
-						id:Math.floor(Math.random()*100).toString(),
+			const item = {
+						id:Math.floor(Math.random()*10000).toString(),
 						name:'test',
 						full_name:'test',
 						html_url:'String',
 						description:'String',
 						language:'String',
-						stargazers_count:Math.floor(Math.random()*100),
-					})
+						stargazers_count:Math.floor(Math.random()*10000),
+					}
+			Repo.find({id:item.id},(err,docs)=>{
+				if(docs.length==0){
+					let newItem = new Repo(item)
 					newItem.save()
 				}
 			})
