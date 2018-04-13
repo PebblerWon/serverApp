@@ -21,7 +21,7 @@ module.exports = appInfo => {
   /*
   *网络配置
   */
-  exports.httpclient = {
+  config.httpclient = {
     // 是否开启本地 DNS 缓存，默认关闭，开启后有两个特性
     // 1. 所有的 DNS 查询都会默认优先使用缓存的，即使 DNS 查询错误也不影响应用
     // 2. 对同一个域名，在 dnsCacheLookupInterval 的间隔内（默认 10s）只会查询一次
@@ -90,7 +90,7 @@ module.exports = appInfo => {
   config.gitapi={
     serverUrl:'https://api.github.com',
     serverUrl2:'https://developer.github.com/v3/',
-    gitToken:'dfac2__27af526e8666a438ac7982a3c8b7938cf53'
+    gitToken:'dfac227af__526e8666a438ac7982a3c8b7938cf53'
   }
   return config;
 };

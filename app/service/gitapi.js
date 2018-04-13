@@ -39,11 +39,42 @@ class GitapiService extends Service{
 	    	return result;
 		}catch(err){
 			this.logger.error(err)
-			return {}
+			return []
 		}
 		
 	}
 
+	/*
+	*根据选择的编程语言种类进行查询
+	*/
+	async advancedQuery(language='',page=1,per_page=10){
+		let _language =language.toString() 
+		let _page = parseInt(page,10)
+		let _per_page = parseInt(per_page,10)
+
+		if(_language==undefined||language==null)
+			_language=''
+		if(_page<1||isNaN(_page))
+			_page = 1
+		if(_per_page<0||isNaN(_per_page))
+			_per_page = 10
+		try{
+			const {ctx,config} = this
+			const {serverUrl,gitToken} = config.gitapi
+			const Repo = ctx.model.Repo
+			
+			const skip_count = (_page - 1) * _per_page
+			let result = await Repo.find({language:_language})
+							   .sort({stargazers_count:-1})
+							   .skip(skip_count)
+							   .limit(_per_page)
+			
+	    	return result;
+		}catch(err){
+			this.logger.error(err)
+			return []
+		}
+	}
 	async me(){
 		const {ctx,config} = this
 		const {serverUrl,gitToken} = config.gitapi
