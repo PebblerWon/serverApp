@@ -13,7 +13,6 @@ class UpdateRepo extends Subscription{
 	}
 
 	async subscribe(){
-		console.log('subscribe')
 		try{
 			const {ctx,config} = this
 			const {serverUrl,gitToken} = config.gitapi

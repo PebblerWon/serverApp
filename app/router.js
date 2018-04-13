@@ -8,8 +8,14 @@ module.exports = app => {
   router.get('/', controller.home.index)
   router.get('/api/test',controller.gitapi.test)
   router.get('/api/me',controller.gitapi.me)
-  router.get('/api/query/:language',controller.gitapi.query)
+
+
+  /*
+  * 对本地mongogdb做分页查询
+  */
   router.get('/api/query',controller.gitapi.query)
+
+  
   router.post('/api/advancedQuery',controller.gitapi.advancedQuery)
   /*
   * server redirect
