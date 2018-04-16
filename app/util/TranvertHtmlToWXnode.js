@@ -8,7 +8,9 @@ function TranvertHtmlToWXnode(ctx){
 	if(ctx.children){
 		for(let i = 0;i < ctx.children.length;i++){
 			let item = ctx.children[i]
-			nodes.push(A(item))
+			let newItem = A(item)
+			if(newItem)
+				nodes.push(newItem)
 		}
 	}
 	return JSON.stringify(nodes)
