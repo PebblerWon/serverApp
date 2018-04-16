@@ -31,7 +31,9 @@ function A(node){
 		
 			if(children.length>0){
 				for(let i = 0;i<children.length;i++){
-					child.push(A(children[i]))
+					let newItem = A(children[i])
+					if(newItem)
+						child.push(newItem)
 				}
 			}
 		}
