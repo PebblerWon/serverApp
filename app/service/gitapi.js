@@ -1,3 +1,5 @@
+const fs = require('fs')
+const path = require('path')
 const Service = require('egg').Service
 const Config = require('../../config/config.default.js')
 
@@ -37,6 +39,31 @@ class GitapiService extends Service{
 			}
 			 
 	    	return result;
+		}catch(err){
+			this.logger.error(err)
+			return []
+		}
+		
+	}
+
+	/*
+	*根据id读取相应的reademe文件并返回
+	*/
+	async readme(id){
+		try{
+			const {ctx,config} = this
+			const baseDir = ctx.app.baseDir
+			const filePath = path.join(baseDir,`readMe/_${id}`)
+			const exist = fs.existsSync(filePath)
+			if(exist){
+				const res = fs.readFileSync(filePath,{
+					encoding:'utf8'
+				})
+				return JSON.parse(res)
+			}else{
+				return []
+			}
+			
 		}catch(err){
 			this.logger.error(err)
 			return []

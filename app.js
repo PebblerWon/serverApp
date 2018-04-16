@@ -1,7 +1,7 @@
 
 module.exports = app=>{
 	app.beforeStart(async()=>{
-		console.log("我要启动了！")
+		//app.runSchedule('updateReadMe')
 	})
 
 	app.messenger.on('myAction',data => {

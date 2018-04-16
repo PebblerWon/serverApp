@@ -8,6 +8,7 @@ module.exports = app=>{
 		description:String,
 		language:String,
 		stargazers_count:Number,
+		readeMe:String
 	})
 	const Repo = mongoose.model('Repo',repoSchema)
 

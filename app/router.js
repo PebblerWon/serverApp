@@ -10,13 +10,14 @@ module.exports = app => {
   router.get('/api/me',controller.gitapi.me)
 
 
+
   /*
   * 对本地mongogdb做分页查询
   */
   router.get('/api/query',controller.gitapi.query)
-
+  router.get('/api/readme',controller.gitapi.readme)
   
-  router.post('/api/advancedQuery',controller.gitapi.advancedQuery)
+  router.get('/api/advancedQuery',controller.gitapi.advancedQuery)
   /*
   * server redirect
   * and the client redirect is realized in controller
