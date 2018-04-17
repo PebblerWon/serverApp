@@ -92,5 +92,6 @@ module.exports = appInfo => {
     serverUrl2:'https://developer.github.com/v3/',
     gitToken:'dfac227af52__6e8666a438ac7982a3c8b7938cf53'
   }
+  config.readMeFolderUrl=path.join(appInfo.baseDir,`readMe/`)
   return config;
 };

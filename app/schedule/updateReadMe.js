@@ -18,13 +18,21 @@ class UpdateReadMe extends Subscription{
 
 	async subscribe(){
 		try{
-			console.log('updateReadMe')
+			//console.log('updateReadMe')
 
 			const {ctx,config} = this
 			const {serverUrl,gitToken} = config.gitapi
+			const readMeFolderUrl = config.readMeFolderUrl
 			const Repo = ctx.model.Repo
 			const AllRepos = await Repo.find().sort({stargazers_count:-1})
-			const baseDir = ctx.app.baseDir
+
+			/*
+			*创建readMe文件夹
+			*/
+			if(!fs.existsSync(readMeFolderUrl)){
+				fs.mkdirSync(readMeFolderUrl)
+			}
+
 			for(let i = 0;i<AllRepos.length;i++){	
 				let lanItem = AllRepos[i]
 
@@ -36,8 +44,9 @@ class UpdateReadMe extends Subscription{
 					let node = $('#readme article')[0]
 					let readeMe = TranvertHtmlToWXnode(node)
 
-					let readeMeFileUrl = path.join(baseDir,`readMe/_${lanItem.id}`)
-					this.logger.info(readeMeFileUrl)
+					let readeMeFileUrl = path.join(readMeFolderUrl,`_${lanItem.id}`)
+
+					/*this.logger.info(readeMeFileUrl)*/
 					/*将转换后的结构写入文件*/
 					fs.writeFile(readeMeFileUrl,readeMe,(err)=>{
 						if(err){

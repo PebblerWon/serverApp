@@ -21,9 +21,9 @@ class GitapiService extends Service{
 
 			const repo_count = await Repo.count()
 			const skip_count = (_page - 1) * _per_page
-			console.log(repo_count)
+			/*console.log(repo_count)
 			console.log(skip_count)
-			console.log(_per_page)
+			console.log(_per_page)*/
 			let result
 
 			//如果数据库的数量满足查询要求
@@ -52,8 +52,9 @@ class GitapiService extends Service{
 	async readme(id){
 		try{
 			const {ctx,config} = this
+			const readMeFolderUrl = config.readMeFolderUrl
 			const baseDir = ctx.app.baseDir
-			const filePath = path.join(baseDir,`readMe/_${id}`)
+			const filePath = path.join(readMeFolderUrl,`_${id}`)
 			const exist = fs.existsSync(filePath)
 			if(exist){
 				const res = fs.readFileSync(filePath,{
