@@ -1,15 +1,11 @@
-logs/
+logs
 readMe/
 npm-debug.log
 yarn-error.log
-node_modules/
+node_modules
 package-lock.json
 yarn.lock
-coverage/
 .idea/
 .vscode/
 .vs/
 run/
-.DS_Store
-*.sw*
-*.un~
