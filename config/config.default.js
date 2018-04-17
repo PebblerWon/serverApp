@@ -1,8 +1,39 @@
 'use strict';
+const fs = require('fs')
 const path = require('path')
 module.exports = appInfo => {
-  const config = exports = {};
+  /*
+  *读取数据库配置和git配置
+  */
+  const configUrl = path.join(appInfo.baseDir,'pwd') 
+  let mongodbConnectUrl=''
+  let gitToken = ''
+  if(fs.existsSync(configUrl)){
+    try{
+      let pwd = fs.readFileSync(configUrl)
+      let _pwd = JSON.parse(pwd)
+      /*
+      * 加载数据库配置
+      * loadDbConfig()
+      */
+      mongodbConnectUrl = _pwd.mongodbConnectUrl
+      /*
+      * 加载git配置
+      * loadGitConfig()
+      */
+      gitToken = _pwd.gitToken
+    }catch(error){
+      console.error(error)
+      return
+    }
+  }else{
+    console.log('数据库配置文件不存在')
+    return
+  }
 
+
+  const config = exports = {};
+  //console.error("appInfo:"+appInfo.baseDir)
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1519695847549_3649';
   // add your config here
@@ -13,7 +44,7 @@ module.exports = appInfo => {
   */
   config.mongoose = {
     client:{
-      url:'mongodb://gitRepo:gitRepo_db@39.106.44.8/gitRepo',
+      url:mongodbConnectUrl,
       options:{}
     }
   }
@@ -90,7 +121,7 @@ module.exports = appInfo => {
   config.gitapi={
     serverUrl:'https://api.github.com',
     serverUrl2:'https://developer.github.com/v3/',
-    gitToken:'dfac227af52__6e8666a438ac7982a3c8b7938cf53'
+    gitToken:gitToken
   }
   config.readMeFolderUrl=path.join(appInfo.baseDir,`readMe/`)
   return config;

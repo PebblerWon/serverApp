@@ -17,9 +17,10 @@ class GitapiController extends Controller{
 		});*/
 		/*let a =  await Repo.find().sort({stargazers_count:-1})
 		ctx.response.body = a.length*/
-		const {ctx,app,config,service,logger} = this
+		/*const {ctx,app,config,service,logger} = this
 		const {language,page,per_page} = ctx.request.query
-		ctx.response.body = await service.gitapi.advancedQuery(language,page,per_page)
+		ctx.response.body = await service.gitapi.advancedQuery(language,page,per_page)*/
+		this.ctx.response.body = this.config.mongoose
 	}
 	async query(){
 		const {ctx,app,config,service,logger} = this
