@@ -19,20 +19,21 @@ class UpdateRepo extends Subscription{
 			const {serverUrl,gitToken} = config.gitapi
 			const Repo = ctx.model.Repo
 			for(let lanItem of languages){
-				this.logger.info("value: " +lanItem.value)
+				//this.logger.info("value: " +lanItem.value)
 				const result = await ctx.curl(`${serverUrl}/search/repositories`,{
 					headers:{
 						Authorization: `token ${gitToken}`
 					},
 					dataType:'json',
 					data:{
-						q:`stars:>1000 language:${lanItem.value}`,
-						order:'stars'
+						q:lanItem.value==''?`stars:>1000 language:''`:`stars:>1000 language:${lanItem.value}`,
+						sort:'stars'
 					}
 				});
-				this.logger.info(lanItem.value+"'s count is "+ result.data.items.length)
+				
 				if(result.status==200&&result.data){
 					for(let item of result.data.items){
+						
 						Repo.find({id:item.id},(err,docs)=>{
 							if(docs.length==0){
 								let newItem = new Repo(item)

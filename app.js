@@ -6,7 +6,7 @@ module.exports = app=>{
 	app.beforeStart(async()=>{
 
 
-		app.runSchedule('updateReadMe')
+		app.runSchedule('updateRepo')
 	})
 
 	app.messenger.on('myAction',data => {

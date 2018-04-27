@@ -2,25 +2,27 @@ const Controller = require('egg').Controller
 
 class GitapiController extends Controller{
 	async test(){
-		/*const {ctx,config} = this
+		const {ctx,config} = this
 		const {serverUrl,gitToken} = config.gitapi
-		const Repo = ctx.model.Repo
+		//const Repo = ctx.model.Repo
+		const b = ''
 		const result = await ctx.curl(`${serverUrl}/search/repositories`,{
 			headers:{
 				Authorization: `token ${gitToken}`
 			},
 			dataType:'json',
 			data:{
-				q:`stars:>10000 language:''`,
+				q:`stars:>1000 language:''`,
 				sort:'stars'
 			}
-		});*/
+		});
+		ctx.response.body = result
 		/*let a =  await Repo.find().sort({stargazers_count:-1})
 		ctx.response.body = a.length*/
 		/*const {ctx,app,config,service,logger} = this
 		const {language,page,per_page} = ctx.request.query
 		ctx.response.body = await service.gitapi.advancedQuery(language,page,per_page)*/
-		this.ctx.response.body = this.config.mongoose
+		/*this.ctx.response.body = this.config.mongoose*/
 	}
 	async query(){
 		const {ctx,app,config,service,logger} = this

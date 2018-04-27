@@ -77,6 +77,7 @@ class GitapiService extends Service{
 	*/
 	async advancedQuery(language='',page=1,per_page=10){
 		let _language =language.toString() 
+		
 		let _page = parseInt(page,10)
 		let _per_page = parseInt(per_page,10)
 
@@ -92,7 +93,14 @@ class GitapiService extends Service{
 			const Repo = ctx.model.Repo
 			
 			const skip_count = (_page - 1) * _per_page
-			let result = await Repo.find({language:_language})
+			let result = []
+			if(_language=='')
+				result = await Repo.find()
+							   .sort({stargazers_count:-1})
+							   .skip(skip_count)
+							   .limit(_per_page)
+			else
+				result = await Repo.find({language:_language})
 							   .sort({stargazers_count:-1})
 							   .skip(skip_count)
 							   .limit(_per_page)
