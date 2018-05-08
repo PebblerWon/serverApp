@@ -18,6 +18,8 @@ module.exports = app => {
   router.get('/api/readme',controller.gitapi.readme)
   
   router.get('/api/advancedQuery',controller.gitapi.advancedQuery)
+
+  router.get('/qcode',controller.qcode.test)
   /*
   * server redirect
   * and the client redirect is realized in controller
