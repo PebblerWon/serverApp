@@ -33,13 +33,17 @@ class UpdateRepo extends Subscription{
 				
 				if(result.status==200&&result.data){
 					for(let item of result.data.items){
-						
-						Repo.find({id:item.id},(err,docs)=>{
+						Repo.deleteOne({id:item.id}, function (err) {
+							ctx.logger.error(err)
+						});
+						let newItem = new Repo(item)
+						newItem.save()
+						/*Repo.find({id:item.id},(err,docs)=>{
 							if(docs.length==0){
 								let newItem = new Repo(item)
 								newItem.save()
 							}
-						})
+						})*/
 					}
 				}
 			}
