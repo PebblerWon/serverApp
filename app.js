@@ -1,5 +1,5 @@
 module.exports = app=>{
-	if(app.config.mongoose.client.url==''){
+	if(app.config.mongoose.client.url || app.config.mongoose.client.url==''){
 		console.log('数据库连接字符串为空')
 		return
 	}
