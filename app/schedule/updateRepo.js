@@ -8,19 +8,19 @@ const {languages} = require('../../config/my_config')
 class UpdateRepo extends Subscription{
 	static get schedule(){
 		return{
-			interval:'5m',
+			interval:'2m',
 			type:'worker'
 		}
 	}
 
-	async subscribe(){
-		try{
-			const {ctx,config} = this
-			const {serverUrl,gitToken} = config.gitapi
+	async subscribe() {
+		try {
+			const {ctx, config} = this
+			const {serverUrl, gitToken} = config.gitapi
 			const Repo = ctx.model.Repo
 			for(let lanItem of languages){
 				//this.logger.info("value: " +lanItem.value)
-				const result = await ctx.curl(`${serverUrl}/search/repositories`,{
+				const result = await ctx.curl(`${serverUrl}/search/repositories`, {
 					headers:{
 						Authorization: `token ${gitToken}`
 					},
@@ -31,7 +31,7 @@ class UpdateRepo extends Subscription{
 					}
 				});
 				
-				if(result.status==200&&result.data){
+				if(result.status == 200 && result.data){
 					for(let item of result.data.items){
 						Repo.deleteOne({id:item.id}, function (err) {
 							ctx.logger.error(err)
@@ -45,6 +45,8 @@ class UpdateRepo extends Subscription{
 							}
 						})*/
 					}
+				} else {
+
 				}
 			}
 		}catch(err){

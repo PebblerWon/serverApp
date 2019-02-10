@@ -6,12 +6,13 @@ module.exports = appInfo => {
   *读取数据库配置和git配置
   */
   const configUrl = path.join(appInfo.baseDir,'pwd') 
-  let mongodbConnectUrl=''
+  let mongodbConnectUrl = ''
   let gitToken = ''
   if(fs.existsSync(configUrl)){
-    try{
+    try {
       let pwd = fs.readFileSync(configUrl)
       let _pwd = JSON.parse(pwd)
+      console.log(_pwd)
       /*
       * 加载数据库配置
       * loadDbConfig()
