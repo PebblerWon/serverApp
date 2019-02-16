@@ -8,7 +8,7 @@ const {languages} = require('../../config/my_config')
 class UpdateRepo extends Subscription{
 	static get schedule(){
 		return{
-			interval:'2m',
+			interval:'5m',
 			type:'worker'
 		}
 	}
